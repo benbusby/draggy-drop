@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>Draggy Drop</title>
+        <script type="text/javascript" src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+        <script type="text/javascript" src="/static/js/chat.js" charset="utf-8"></script>
+    </head>
+    <body>
+        <h1>Draggy Drop (channel: {{ room }})</h1>
+        <textarea id="chat" cols="80" rows="20"></textarea><br><br>
+        <input id="text" size="80" placeholder="Place your thoughtful message here"><br><br>
+        <a href="#" onclick="leaveRoom();">Leave this place</a>
+    </body>
+</html>

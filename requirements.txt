@@ -1,0 +1,12 @@
+eventlet
+Flask
+Flask-SocketIO
+Flask-WTF
+greenlet
+itsdangerous
+Jinja2
+MarkupSafe
+python-engineio
+python-socketio
+Werkzeug
+WTForms
