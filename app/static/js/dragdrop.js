@@ -1,17 +1,28 @@
 const loadWords = () => {
     $.getJSON("/static/words.json", function(words) {
-        for (let key in words) {
-            if (words.hasOwnProperty(key)) {
-                $("#chat-options").append("<span>" + key + "</span>");
-                console.log(key + " -> " + words[key]);
+        // TODO: Split out into separate categories
+        for (let greeting in words.greetings) {
+            if (words.greetings.hasOwnProperty(greeting)) {
+                $("#chat-options").append("<span>" + greeting + "</span>");
+                console.log(greeting + " -> " + words.greetings[greeting]);
+            }
+        }
+
+        for (let action in words.actions) {
+            if (words.actions.hasOwnProperty(action)) {
+                $("#chat-options").append("<span>" + action + "</span>");
             }
         }
 
         $("span").each(function() {
             $(this).draggable({
+                start: function(event, ui) {
+                    $(this).addClass("grabbed");
+                },
                 stop: function(event, ui) {
                     // reset position of dragged element
                     $(this).css({"top":"", "left":""});
+                    $(this).removeClass("grabbed");
                 }
             });
         });
@@ -22,16 +33,21 @@ $(document).ready(function() {
     // load the draggable words into the view
     loadWords();
 
-    $("#chat-input").droppable({
+    $("#actions").droppable({
+        hoverClass: "highlight",
         drop: function(event, ui) {
-            console.log('heyheyhey');
+            if (ui.draggable.text() === "SEND") {
+                sendChat();
+            } else if (ui.draggable.text() === "CLEAR") {
+                $("input").val("");
+            }
         }
     });
 
     $("input").droppable({
         hoverClass: "highlight",
         drop: function(event, ui) {
-            $(this).val($(this).val() + ui.draggable.text());
+            $(this).val($(this).val() + ui.draggable.text() + " ");
         }
     });
 });

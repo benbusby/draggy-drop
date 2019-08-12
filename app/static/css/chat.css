@@ -16,14 +16,33 @@
 
 #chat {
     width: 630px;
+    color: black;
+    resize: none;
 }
 
 span {
-    background:#fff;
+    background: #fff;
     border: 2px dotted black;
-    padding:2px;
-    margin:0 5px;
-    font-size:16px;
+    padding: 4px;
+    margin: 0 5px;
+    font-size: 16px;
+    font-family: "Arial";
+}
+
+span:hover {
+    cursor: move;
+    cursor: url(images/grab.cur);
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+    cursor: grab;
+}
+
+span.grabbed {
+    cursor: url(images/grabbing.cur);
+    cursor: -webkit-grabbing;
+    cursor: -moz-grabbing;
+    cursor: grabbing;
+    border: 2px solid black;
 }
 
 input {
@@ -35,5 +54,15 @@ input {
 }
 
 input.highlight {
-    background:#ffa;
+    background: #ffa;
+}
+
+#actions {
+    padding: 10px;
+    background: white;
+    color: black;
+}
+
+#actions.highlight {
+    background: lightblue;
 }

@@ -1,4 +1,16 @@
 {
-    "hello": 1,
-    "hey": 2
+    "greetings": {
+        "hello": "G1",
+        "hey": "G2",
+        "hi": "G3",
+        "sup": "G4",
+        "howdy": "G5",
+        "helloooo": "G6",
+        "hola": "G7",
+        "yo": "G8"
+    },
+    "actions": {
+        "SEND": "A1",
+        "CLEAR": "A2"
+    }
 }

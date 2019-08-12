@@ -12,11 +12,11 @@
     <body>
         <h1>Draggy Drop (channel: {{ room }})</h1>
         <a href="#" onclick="leaveRoom();">Leave Chat</a><br><br>
-        <textarea id="chat" cols="80" rows="20"></textarea><br><br>
-        <!--<div id="chat-input" class="ui-widget-header">-->
-            <!--<p>Place your thoughtful messages here</p>-->
-        <!--</div>-->
-        <input id="chat-input" size="80" placeholder="Place your thoughtful messages here"><br><br>
-        <div id="chat-options"></div>
+        <textarea id="chat" cols="80" rows="20" disabled></textarea><br><br>
+        <div>
+            <input id="chat-input" size="80" placeholder="Place your thoughtful messages here!" onkeydown="userTyping(event)"><br><br>
+            <button id="actions" disabled>Place an ACTION here!</button><br><br>
+            <div id="chat-options"></div>
+        </div>
     </body>
 </html>
