@@ -1,0 +1,39 @@
+#draggable {
+    width: 100px;
+    height: 100px;
+    padding: 0.5em;
+    float: left;
+    margin: 10px 10px 10px 0;
+}
+
+#droppable {
+    width: 150px;
+    height: 150px;
+    padding: 0.5em;
+    float: left;
+    margin: 10px;
+}
+
+#chat {
+    width: 630px;
+}
+
+span {
+    background:#fff;
+    border: 2px dotted black;
+    padding:2px;
+    margin:0 5px;
+    font-size:16px;
+}
+
+input {
+    border:1px solid #000;
+    background:#fff;
+    padding:2px;
+    font-size:16px;
+    width: 630px;
+}
+
+input.highlight {
+    background:#ffa;
+}

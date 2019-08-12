@@ -12,11 +12,11 @@ $(document).ready(function(){
         $('#chat').val($('#chat').val() + data.msg + '\n');
         $('#chat').scrollTop($('#chat')[0].scrollHeight);
     });
-    $('#text').keypress(function(e) {
+    $('#chat-input').keypress(function(e) {
         var code = e.keyCode || e.which;
         if (code == 13) {
-            text = $('#text').val();
-            $('#text').val('');
+            text = $('#chat-input').val();
+            $('#chat-input').val('');
             socket.emit('chat', {msg: text});
         }
     });
