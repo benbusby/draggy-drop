@@ -82,22 +82,22 @@
         "elephant": "A4"
     },
     "prefixes": {
-        "un": "PR1",
-        "dis": "PR2",
-        "non": "PR3",
-        "over": "PR4",
-        "anti": "PR5",
-        "mid": "PR6",
-        "pre": "PR7",
-        "post": "PR8",
-        "semi": "PR9",
-        "sub": "PR10"
+        "un": "PRE1",
+        "dis": "PRE2",
+        "non": "PRE3",
+        "over": "PRE4",
+        "anti": "PRE5",
+        "mid": "PRE6",
+        "pre": "PRE7",
+        "post": "PRE8",
+        "semi": "PRE9",
+        "sub": "PRE10"
     },
     "suffixes": {
-        "s": "S1",
-        "ing": "S2",
-        "ly": "S3",
-        "es": "S4"
+        "s": "SUF1",
+        "ing": "SUF2",
+        "ly": "SUF3",
+        "es": "SUF4"
     },
     "indefinites": {
         "a": "N1",

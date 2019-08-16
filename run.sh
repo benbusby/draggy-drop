@@ -10,5 +10,4 @@ print(token)
 EOF`
 
 export SECRET_KEY=`python -c "$SECRET_STR"`
-
 python chat.py

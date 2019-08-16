@@ -6,16 +6,25 @@ const loadWords = () => {
         for (let key in words) {
             let categoryTitle = key.charAt(0).toUpperCase() + key.slice(1);
             wordCategories.push(key);
+
             $("#category-section").append("<div class='chat-options' id='" + key + "-words'></div>");
             $("#category-selector").append("<option value='" + key + "'>" + categoryTitle + "</option>");
+
+            let numWords = 0;
             for (let word in words[key]) {
                 if (!firstVisible) {
                     $("#" + key + "-words").css("display", "initial");
                     firstVisible = true;
                 }
 
-                $("#" + key + "-words").append("<span class='draggable-span'>" + word + "</span>");
-                console.log(word + " -> " + key);
+                let wordVal = words[key][word];
+
+                $("#" + key + "-words").append("<span data-val='" + wordVal + "' class='draggable-span'>" + word + "</span>");
+                numWords++;
+                if (numWords >= 10) {
+                    $("#" + key + "-words").append("<br/><br/>");
+                    numWords = 0;
+                }
             }
         }
 
@@ -52,7 +61,16 @@ $(document).ready(function() {
     $("input").droppable({
         hoverClass: "highlight",
         drop: function(event, ui) {
-            $(this).val($(this).val() + ui.draggable.text() + " ");
+            let word = ui.draggable.text();
+            let wordVal = ui.draggable[0].dataset.val;
+
+            if (wordVal.indexOf("SUF") >= 0) {
+                $(this).val($(this).val().slice(0, -1) + ui.draggable.text() + " ");
+            } else if (wordVal.indexOf("PRE") >= 0) {
+                $(this).val($(this).val() + ui.draggable.text());
+            } else {
+                $(this).val($(this).val() + ui.draggable.text() + " ");
+            }
         }
     });
 
