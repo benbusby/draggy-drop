@@ -9,8 +9,169 @@
         "hola": "G7",
         "yo": "G8"
     },
+    "pronouns": {
+        "I": "P1",
+        "you": "P2",
+        "your": "P3",
+        "his": "P4",
+        "hers": "P5",
+        "him": "P6",
+        "her": "P7",
+        "yours": "P8",
+        "my": "P9",
+        "me": "P10",
+        "we": "P11",
+        "us": "P12",
+        "our": "P13"
+    },
+    "verbs": {
+        "is": "V1",
+        "am": "V2",
+        "be": "V3",
+        "have": "V4",
+        "do": "V5",
+        "say": "V6",
+        "go": "V7",
+        "get": "V8",
+        "make": "V9",
+        "want": "V10",
+        "know": "V11",
+        "think": "V12",
+        "take": "V13",
+        "see": "V14",
+        "come": "V15",
+        "drop": "V16",
+        "are": "V17",
+        "give": "V19",
+        "ask": "V20",
+        "need": "V21",
+        "try": "V22",
+        "feel": "V23"
+    },
+    "negation": {
+        "no": "N0",
+        "not": "N1",
+        "nope": "N2",
+        "neither": "N3",
+        "none": "N4",
+        "nobody": "N5"
+    },
+    "exclamation": {
+        "please": "X1",
+        "wow": "X2",
+        "zowie": "X3",
+        "woah": "X4",
+        "boom": "X5",
+        "thanks": "X6"
+    },
+    "moods": {
+        "dislike": "M1",
+        "like": "M2",
+        "love": "M3",
+        "enjoy": "M4",
+        "angry": "M5",
+        "happy": "M6",
+        "sad": "M7",
+        "confused": "M8",
+        "unhappy": "M9"
+    },
+    "animals": {
+        "dog": "A1",
+        "cat": "A2",
+        "bird": "A3",
+        "elephant": "A4"
+    },
+    "prefixes": {
+        "un": "PR1",
+        "dis": "PR2",
+        "non": "PR3",
+        "over": "PR4",
+        "anti": "PR5",
+        "mid": "PR6",
+        "pre": "PR7",
+        "post": "PR8",
+        "semi": "PR9",
+        "sub": "PR10"
+    },
+    "suffixes": {
+        "s": "S1",
+        "ing": "S2",
+        "ly": "S3",
+        "es": "S4"
+    },
+    "indefinites": {
+        "a": "N1",
+        "an": "N2"
+    },
+    "prepositions": {
+        "for": "R1",
+        "above": "R2",
+        "from": "R3",
+        "across": "R4",
+        "after": "R5",
+        "at": "R6",
+        "around": "R7",
+        "before": "R8",
+        "behind": "R9",
+        "below": "R10",
+        "beside": "R11",
+        "between": "R12",
+        "by": "R13",
+        "down": "R14",
+        "during": "R15",
+        "in": "R16",
+        "inside": "R17",
+        "onto": "R18",
+        "of": "R19",
+        "off": "R20",
+        "on": "R21",
+        "out": "R22",
+        "through": "R23",
+        "to": "R24",
+        "under": "R25",
+        "up": "R26",
+        "with": "R27"
+    },
+    "holidays": {
+        "halloween": "H1",
+        "thanksgiving": "H2",
+        "xmas": "H3",
+        "christmas": "H4",
+        "kwanzaa": "H5",
+        "hanukkah": "H6",
+        "labor day": "H7"
+    },
+    "interrogatives": {
+        "who": "I1",
+        "what": "I2",
+        "when": "I3",
+        "where": "I4",
+        "why": "I5",
+        "how": "I6",
+        "whom": "I7",
+        "whither": "I8",
+        "whence": "I9",
+        "which": "I10",
+        "whose": "I11"
+    },
+    "curses": {
+        "dang": "C1",
+        "darn": "C2",
+        "shoot": "C3",
+        "crap": "C4",
+        "heck": "C5"
+    },
+    "th-": {
+        "the": "T1",
+        "them": "T2",
+        "those": "T3",
+        "there": "T4",
+        "they": "T5",
+        "they're": "T6",
+        "their": "T7"
+    },
     "actions": {
-        "SEND": "A1",
-        "CLEAR": "A2"
+        "SEND": "--",
+        "CLEAR": "--"
     }
 }
