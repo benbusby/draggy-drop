@@ -1,5 +1,37 @@
 var socket;
 
+// ----------------------
+// Chat message templates
+// ----------------------
+const incomingMessage = (sender, message) => {
+    return `
+    <li class="chat-message">
+        <span class="sender">${sender}</span>
+        <span class="message incoming">${message}</span>
+    </li>
+    `
+}
+
+const outgoingMessage = (message) => {
+    return `
+    <li class="chat-message">
+        <span class="message outgoing">${message}</span>
+    </li>
+    `
+}
+
+const newUserMessage = (message) => {
+    return `
+    <li class="chat-message">
+        <span class="new-user">${message}</span>
+    </li>
+    `
+}
+
+
+// ----------------------
+//
+// ----------------------
 const sendChat = () => {
     let text = $('#chat-input').val();
 
@@ -16,27 +48,28 @@ const sendChat = () => {
     socket.emit('chat', { msg: text });
 }
 
+// Scroll animation for incoming messages
+const scrollChat = () => {
+    $("#chat-div").animate({ scrollTop: $('#chat-div').prop("scrollHeight")}, 1000);
+}
+
 $(document).ready(function(){
     socket = io.connect('http://' + document.domain + ':' + location.port + '/chat');
     socket.on('connect', function() {
         socket.emit('join', {});
     });
     socket.on('status', function(data) {
-        $('#chat').val($('#chat').val() + '<' + data.msg + '>\n');
-        $('#chat').scrollTop($('#chat')[0].scrollHeight);
+        $('#chat-list').append(newUserMessage(data.msg));
+        scrollChat();
     });
     socket.on('message', function(data) {
-        $('#chat').val($('#chat').val() + data.msg + '\n');
-        $('#chat').scrollTop($('#chat')[0].scrollHeight);
-    });
-
-    $('#chat-input').keypress(function(e) {
-        var code = e.keyCode || e.which;
-        if (code == 13) {
-            text = $('#chat-input').val();
-            $('#chat-input').val('');
-            socket.emit('chat', {msg: text});
+        if (data.username == currentUsername) {
+            $('#chat-list').append(outgoingMessage(data.msg));
+        } else {
+            $('#chat-list').append(incomingMessage(data.username, data.msg));
         }
+
+        scrollChat();
     });
 });
 
@@ -57,3 +90,4 @@ const userTyping = (event) => {
         "messaging interface. Just select a category using the dropdown menu, " +
         "and start dragging words over to this input box.");
 }
+

@@ -3,18 +3,18 @@ const loadWords = () => {
         // TODO: Split out into separate categories
         for (let greeting in words.greetings) {
             if (words.greetings.hasOwnProperty(greeting)) {
-                $("#chat-options").append("<span>" + greeting + "</span>");
+                $("#chat-options").append("<span class='draggable-span'>" + greeting + "</span>");
                 console.log(greeting + " -> " + words.greetings[greeting]);
             }
         }
 
         for (let action in words.actions) {
             if (words.actions.hasOwnProperty(action)) {
-                $("#chat-options").append("<span>" + action + "</span>");
+                $("#chat-options").append("<span class='draggable-span'>" + action + "</span>");
             }
         }
 
-        $("span").each(function() {
+        $(".draggable-span").each(function() {
             $(this).draggable({
                 start: function(event, ui) {
                     $(this).addClass("grabbed");

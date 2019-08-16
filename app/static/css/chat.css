@@ -1,3 +1,7 @@
+body {
+    background: #ddd;
+}
+
 #draggable {
     width: 100px;
     height: 100px;
@@ -14,13 +18,87 @@
     margin: 10px;
 }
 
-#chat {
+.chatbox {
     width: 630px;
     color: black;
-    resize: none;
+    position: relative;
+	display: table;
+	float: left;
+	margin: 1rem;
+	width: 40rem;
+	height: 30rem;
+	background-color: white;
+	box-shadow: 0 0.25rem 2rem rgba(38,50,56, 0.1);
+	overflow: hidden;
+    margin-top: 0;
 }
 
-span {
+.chats {
+    margin: 1em;
+}
+
+ul {
+    padding: 0;
+}
+
+ul > li {
+	position: relative;
+	list-style: none;
+	display: block;
+	transition: 0.5s all;
+}
+
+ul > li:after {
+	display: table;
+	content: '';
+	clear: both;
+}
+
+.sender {
+    position: relative;
+    display: block;
+    font-size: 10px;
+    margin-left: 10px;
+    font-family: 'Arial';
+}
+
+.new-user {
+    width: 100%;
+    text-align: center;
+    display: block;
+    font-family: 'Arial';
+    font-size: 12px;
+}
+
+.message {
+    border-radius: 25px;
+    padding: 6px;
+    font-size: 16px;
+    font-family: "Arial";
+    max-width: 50%;
+	display: inline-block;
+	padding: 0.5rem 1rem;
+	line-height: 1rem;
+	font-size: 0.875rem;
+	border-radius: 1rem;
+	margin-bottom: 0.5rem;
+	/*word-break: break-all;*/
+    white-space: pre-wrap;
+	text-transform: capitalize;
+}
+
+.message.outgoing {
+    color: white;
+	background: #0B93F6;
+    float: right;
+}
+
+.message.incoming {
+	color: black;
+    background: #E5E5EA;
+}
+
+.draggable-span {
     background: #fff;
     border: 2px dotted black;
     padding: 4px;
@@ -29,7 +107,7 @@ span {
     font-family: "Arial";
 }
 
-span:hover {
+.draggable-span:hover {
     cursor: move;
     cursor: url(images/grab.cur);
     cursor: -webkit-grab;
@@ -37,7 +115,7 @@ span:hover {
     cursor: grab;
 }
 
-span.grabbed {
+.draggable-span.grabbed {
     cursor: url(images/grabbing.cur);
     cursor: -webkit-grabbing;
     cursor: -moz-grabbing;

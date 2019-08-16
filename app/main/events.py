@@ -21,7 +21,7 @@ def chat(message):
     """
     print("msg: " + str(message))
     room = session.get('room')
-    emit('message', {'msg': session.get('name') + ': ' + message['msg']}, room=room)
+    emit('message', {'username': session.get('name'), 'msg': message['msg']}, room=room)
 
 
 @socketio.on('leave', namespace='/chat')
