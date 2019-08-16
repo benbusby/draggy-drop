@@ -1,5 +1,6 @@
 body {
     background: #ddd;
+    font-family: 'Arial';
 }
 
 #draggable {
@@ -59,14 +60,12 @@ ul > li:after {
     display: block;
     font-size: 10px;
     margin-left: 10px;
-    font-family: 'Arial';
 }
 
 .new-user {
     width: 100%;
     text-align: center;
     display: block;
-    font-family: 'Arial';
     font-size: 12px;
 }
 
@@ -74,7 +73,6 @@ ul > li:after {
     border-radius: 25px;
     padding: 6px;
     font-size: 16px;
-    font-family: "Arial";
     max-width: 50%;
 	display: inline-block;
 	padding: 0.5rem 1rem;
@@ -104,7 +102,6 @@ ul > li:after {
     padding: 4px;
     margin: 0 5px;
     font-size: 16px;
-    font-family: "Arial";
 }
 
 .draggable-span:hover {
@@ -143,4 +140,12 @@ input.highlight {
 
 #actions.highlight {
     background: lightblue;
+}
+
+.chat-options {
+    display: none;
+}
+
+#category-selector {
+    margin-bottom: 2em;
 }

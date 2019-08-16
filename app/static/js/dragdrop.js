@@ -1,16 +1,21 @@
+const wordCategories = [];
+
 const loadWords = () => {
     $.getJSON("/static/words.json", function(words) {
-        // TODO: Split out into separate categories
-        for (let greeting in words.greetings) {
-            if (words.greetings.hasOwnProperty(greeting)) {
-                $("#chat-options").append("<span class='draggable-span'>" + greeting + "</span>");
-                console.log(greeting + " -> " + words.greetings[greeting]);
-            }
-        }
+        let firstVisible = false;
+        for (let key in words) {
+            let categoryTitle = key.charAt(0).toUpperCase() + key.slice(1);
+            wordCategories.push(key);
+            $("#category-section").append("<div class='chat-options' id='" + key + "-words'></div>");
+            $("#category-selector").append("<option value='" + key + "'>" + categoryTitle + "</option>");
+            for (let word in words[key]) {
+                if (!firstVisible) {
+                    $("#" + key + "-words").css("display", "initial");
+                    firstVisible = true;
+                }
 
-        for (let action in words.actions) {
-            if (words.actions.hasOwnProperty(action)) {
-                $("#chat-options").append("<span class='draggable-span'>" + action + "</span>");
+                $("#" + key + "-words").append("<span class='draggable-span'>" + word + "</span>");
+                console.log(word + " -> " + key);
             }
         }
 
@@ -48,6 +53,13 @@ $(document).ready(function() {
         hoverClass: "highlight",
         drop: function(event, ui) {
             $(this).val($(this).val() + ui.draggable.text() + " ");
+        }
+    });
+
+    $("#category-selector").change(function() {
+        for (let key in wordCategories) {
+            let category = wordCategories[key];
+            $("#" + category + "-words").css("display", category == this.value ? "initial" : "none");
         }
     });
 });
