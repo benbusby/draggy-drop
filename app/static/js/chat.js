@@ -28,14 +28,27 @@ const newUserMessage = (message) => {
     `
 }
 
+// Key value mapping of chat words
+// to their respective categories in the
+// words json file
+const rawMessage = new Map();
+function mapToObj(inputMap) {
+    let obj = {};
+
+    inputMap.forEach(function(value, key){
+        obj[key] = value
+    });
+
+    return obj;
+}
 
 // ----------------------
-//
+// User chat interaction
 // ----------------------
 const sendChat = () => {
-    let text = $('#chat-input').val();
+    let message = $('#chat-input').val();
 
-    if (text.length == 0) {
+    if (message.length == 0) {
         alert("Hi there! Looks like you just tried sending an " +
         "empty message.\n\nHere at DraggyDrop, we like to do " +
         "things a little differently. Instead of sending an " +
@@ -45,7 +58,7 @@ const sendChat = () => {
     }
 
     $('#chat-input').val('');
-    socket.emit('chat', { msg: text });
+    socket.emit('chat', { msg: message, raw_msg: JSON.stringify(mapToObj(rawMessage)) });
 }
 
 // Scroll animation for incoming messages

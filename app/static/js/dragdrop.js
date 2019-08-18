@@ -11,15 +11,15 @@ const loadWords = () => {
             $("#category-selector").append("<option value='" + key + "'>" + categoryTitle + "</option>");
 
             let numWords = 0;
-            for (let word in words[key]) {
+            for (let i in words[key]) {
                 if (!firstVisible) {
                     $("#" + key + "-words").css("display", "initial");
                     firstVisible = true;
                 }
 
-                let wordVal = words[key][word];
+                let word = words[key][i];
 
-                $("#" + key + "-words").append("<span data-val='" + wordVal + "' class='draggable-span'>" + word + "</span>");
+                $("#" + key + "-words").append("<span data-val='" + key + "' class='draggable-span'>" + word + "</span>");
                 numWords++;
                 if (numWords >= 10) {
                     $("#" + key + "-words").append("<br/><br/>");
@@ -54,7 +54,11 @@ $(document).ready(function() {
                 sendChat();
             } else if (ui.draggable.text() === "CLEAR") {
                 $("input").val("");
+            } else {
+                return;
             }
+
+            rawMessage.clear();
         }
     });
 
@@ -64,13 +68,16 @@ $(document).ready(function() {
             let word = ui.draggable.text();
             let wordVal = ui.draggable[0].dataset.val;
 
-            if (wordVal.indexOf("SUF") >= 0) {
+            if (wordVal.indexOf("suffix") >= 0) {
                 $(this).val($(this).val().slice(0, -1) + ui.draggable.text() + " ");
-            } else if (wordVal.indexOf("PRE") >= 0) {
+            } else if (wordVal.indexOf("prefix") >= 0) {
                 $(this).val($(this).val() + ui.draggable.text());
             } else {
                 $(this).val($(this).val() + ui.draggable.text() + " ");
             }
+
+            rawMessage.set(wordVal, ui.draggable.text());
+            console.log(rawMessage);
         }
     });
 
