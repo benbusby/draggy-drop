@@ -58,7 +58,7 @@ $(document).ready(function() {
                 return;
             }
 
-            rawMessage.clear();
+            rawMessage.length = 0;
         }
     });
 
@@ -76,7 +76,7 @@ $(document).ready(function() {
                 $(this).val($(this).val() + ui.draggable.text() + " ");
             }
 
-            rawMessage.set(wordVal, ui.draggable.text());
+            rawMessage.push({ [wordVal]: ui.draggable.text() });
             console.log(rawMessage);
         }
     });

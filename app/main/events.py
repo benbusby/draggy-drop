@@ -21,12 +21,26 @@ def chat(message):
     """
     Sends a message from a user to all active members of a room.
     """
-    if 'msg' not in message or 'raw_msg' not in message or not verify_message(message):
+    room = session.get('room')
+    if 'raw_msg' not in message:
         emit('status', {'msg': session.get('name') + ' is trying to be sneaky...'}, room=room)
         return
 
-    room = session.get('room')
-    emit('message', {'username': session.get('name'), 'msg': message['msg']}, room=room)
+    print(message)
+
+    raw_msg = json.loads(message['raw_msg'])
+    if verify_message(raw_msg):
+        chat_msg = ''
+        for word in raw_msg:
+            for key, value in word.items():
+                if 'prefix' in key:
+                    chat_msg += value
+                elif 'suffix' in key:
+                    chat_msg = chat_msg[:-1] + value + ' '
+                else:
+                    chat_msg += value + ' '
+
+        emit('message', {'username': session.get('name'), 'msg': chat_msg}, room=room)
 
 
 @socketio.on('leave', namespace='/chat')
@@ -40,19 +54,18 @@ def leave(message):
     emit('status', {'msg': session.get('name') + ' has left the room.'}, room=room)
 
 
-def verify_message(message):
+def verify_message(raw_msg):
     """
     Verifies the words contained in the chat message against their values in
     the words json file.
     """
-    msg_list = message['msg'].split()
     words_path = os.path.join(current_app.static_folder, 'words.json')
     with open(words_path) as words_json:
-        raw_msg = json.loads(message['raw_msg'])
         words_data = json.load(words_json)
         index = 0
-        for key, value in raw_msg.items():
-            if value not in words_data[key]:
-                return False
+        for word in raw_msg:
+            for key, value in word.items():
+                if value not in words_data[key]:
+                    return False
 
     return True

@@ -31,11 +31,11 @@ const newUserMessage = (message) => {
 // Key value mapping of chat words
 // to their respective categories in the
 // words json file
-const rawMessage = new Map();
+const rawMessage = [];
 function mapToObj(inputMap) {
     let obj = {};
 
-    inputMap.forEach(function(value, key){
+    inputMap.forEach(function(value, key) {
         obj[key] = value
     });
 
@@ -58,7 +58,7 @@ const sendChat = () => {
     }
 
     $('#chat-input').val('');
-    socket.emit('chat', { msg: message, raw_msg: JSON.stringify(mapToObj(rawMessage)) });
+    socket.emit('chat', { raw_msg: JSON.stringify(rawMessage) });
 }
 
 // Scroll animation for incoming messages
