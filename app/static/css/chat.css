@@ -37,6 +37,7 @@
 
 #chat-div {
     height: 30rem;
+    overflow-x: hidden;
     overflow-y: scroll;
 }
 
@@ -69,6 +70,7 @@ ul > li:after {
     text-align: center;
     display: block;
     font-size: 12px;
+    padding: 5px;
 }
 
 .message {

@@ -91,7 +91,7 @@ const leaveRoom = () => {
         socket.disconnect();
 
         // go back to the login page
-        window.location.href = "{{ url_for('main.index') }}";
+        window.location.href = "/";
     });
 }
 
