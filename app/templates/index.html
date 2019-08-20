@@ -1,15 +1,17 @@
 <html>
     <head>
-        <link href="/static/css/chat.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/main.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/login.css" rel="stylesheet" type="text/css" />
         <title>Draggy Drop</title>
     </head>
     <body>
-        <h1>Draggy Drop</h1>
-        <form method="POST">
-            {{ form.hidden_tag() }}
-            {{ form.name.label }}: {{ form.name() }} {% for error in form.name.errors %}{{ error }}{% endfor %}<br>
-            {{ form.room.label }}: {{ form.room() }} {% for error in form.room.errors %}{{ error }}{% endfor %}<br>
-            {{ form.submit() }}
-        </form>
+        <div class="login-box">
+            <h1 class="app-header">Draggy Drop</h1>
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                {{ form.name.label }}:<br/> {{ form.name() }} {% for error in form.name.errors %}{{ error }}{% endfor %}<br/><br/>
+                {{ form.submit() }}
+            </form>
+        </div>
     </body>
 </html>

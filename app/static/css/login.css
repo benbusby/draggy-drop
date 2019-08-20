@@ -1,3 +1,14 @@
-body {
-    background: #ddd;
+.login-box {
+    width: 400px;
+    padding: 15px;
+    margin: 10% auto;
+    text-align: center;
+    background: white;
+	box-shadow: 0 0.25rem 2rem rgba(38,50,56, 0.1);
+    border-radius: 25px;
+    border: 5px solid #ddd;
+}
+
+.app-header {
+    margin-top: 0px;
 }
