@@ -28,17 +28,21 @@ const loadWords = () => {
             }
         }
 
-        $(".draggable-span").each(function() {
-            $(this).draggable({
-                start: function(event, ui) {
-                    $(this).addClass("grabbed");
-                },
-                stop: function(event, ui) {
-                    // reset position of dragged element
-                    $(this).css({"top":"", "left":""});
-                    $(this).removeClass("grabbed");
-                }
-            });
+        setDraggable();
+    });
+}
+
+const setDraggable = () => {
+    $(".draggable-span").each(function() {
+        $(this).draggable({
+            start: function(event, ui) {
+                $(this).addClass("grabbed");
+            },
+            stop: function(event, ui) {
+                // reset position of dragged element
+                $(this).css({"top":"", "left":""});
+                $(this).removeClass("grabbed");
+            }
         });
     });
 }

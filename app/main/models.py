@@ -3,7 +3,6 @@ from flask_login import UserMixin
 
 
 def load_user(username):
-    print(db)
     return User.query.get(str(username))
 
 

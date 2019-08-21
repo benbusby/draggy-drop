@@ -39,8 +39,11 @@ def chat(message):
         chat_msg = ''
         for word in raw_msg:
             for key, value in word.items():
-                if value not in words_data[key]:
+                if 'user' not in key and value not in words_data[key]:
                     emit('status', {'msg': session.get('name') + ' broke the rules'}, room=room)
+                    return
+                elif 'user' in key and load_user(value) is None:
+                    emit('status', {'msg': session.get('name') + ' tried addressing a user, but they left!'}, room=room)
                     return
 
                 if 'prefix' in key:

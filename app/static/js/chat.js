@@ -28,6 +28,23 @@ const newUserMessage = (message) => {
     `
 }
 
+const newOnlineUser = (username) => {
+    return `
+    <span data-val="user" class="draggable-span">${username}</span>
+    `
+}
+
+const updateOnlineUsers = (users) => {
+    let onlineUsers = $("#online-users");
+    onlineUsers.html("");
+
+    for (var i in users) {
+        onlineUsers.html(onlineUsers.html() + newOnlineUser(users[i]));
+    }
+
+    setDraggable();
+}
+
 // Key value mapping of chat words
 // to their respective categories in the
 // words json file
@@ -67,7 +84,8 @@ $(document).ready(function(){
     });
     socket.on('status', function(data) {
         $('#chat-list').append(newUserMessage(data.msg));
-        $("#online-header").text(data.users.length + " online");
+        $("#online-header").text(data.users.length + " online:");
+        updateOnlineUsers(data.users);
         scrollChat();
     });
     socket.on('message', function(data) {
