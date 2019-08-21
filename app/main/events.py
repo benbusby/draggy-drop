@@ -48,7 +48,7 @@ def chat(message):
 
                 if 'prefix' in key:
                     chat_msg += value
-                elif 'suffix' in key:
+                elif 'suffix' in key or 'punctuation' in key:
                     chat_msg = chat_msg[:-1] + value + ' '
                 else:
                     chat_msg += value + ' '
@@ -62,8 +62,19 @@ def leave(message):
     Sent by clients when they leave a room.
     A status message is broadcast to all people in the room.
     """
+    leaving_user = User.query.filter_by(username=session.get('name')).first()
+
+    # Remove the user from the chat room
     room = session.get('room')
     leave_room(room)
-    db.session.remove(User(username=session.get('name')))
+
+    # Remove the user from the db to free up the username
+    db.session.delete(leaving_user)
     db.session.commit()
-    emit('status', {'msg': session.get('name') + ' has left the room.'}, room=room)
+
+    # Downlink new online user list
+    current_users = User.query.all()
+    users = []
+    for i in range(0, len(current_users)):
+        users.append(current_users[i].username)
+    emit('status', {'msg': session.get('name') + ' has left the chat.', 'users': users}, room=room)

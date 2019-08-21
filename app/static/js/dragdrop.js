@@ -72,7 +72,7 @@ $(document).ready(function() {
             let word = ui.draggable.text();
             let wordVal = ui.draggable[0].dataset.val;
 
-            if (wordVal.indexOf("suffix") >= 0) {
+            if (wordVal.indexOf("suffix") >= 0 || wordVal.indexOf("punctuation") >= 0) {
                 $(this).val($(this).val().slice(0, -1) + ui.draggable.text() + " ");
             } else if (wordVal.indexOf("prefix") >= 0) {
                 $(this).val($(this).val() + ui.draggable.text());

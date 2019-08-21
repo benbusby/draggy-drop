@@ -102,11 +102,11 @@ $(document).ready(function(){
 });
 
 const leaveRoom = () => {
-    socket.emit('left', {}, function() {
+    socket.emit('leave', {}, function() {
         socket.disconnect();
 
         // go back to the login page
-        window.location.href = "/";
+        window.location.href = window.location.href.replace("chat", "");;
     });
 }
 
@@ -129,3 +129,9 @@ const getUUID = () => {
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
         s4() + '-' + s4() + s4() + s4();
 }
+
+// Leave chat if closing the tab in order to free up
+// the username
+$(window).bind("beforeunload", function() {
+    leaveRoom();
+});
