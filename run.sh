@@ -10,4 +10,10 @@ print(token)
 EOF`
 
 export SECRET_KEY=`python -c "$SECRET_STR"`
+
+rm -rf app/users.db migrations/
+flask db init
+flask db migrate
+flask db upgrade
+
 python chat.py

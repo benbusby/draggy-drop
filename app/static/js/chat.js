@@ -67,13 +67,14 @@ $(document).ready(function(){
     });
     socket.on('status', function(data) {
         $('#chat-list').append(newUserMessage(data.msg));
+        $("#online-header").text(data.users.length + " online");
         scrollChat();
     });
     socket.on('message', function(data) {
         if (data.username == currentUsername) {
             let outgoingMsg = $('#' + data.id);
             outgoingMsg.removeClass('sending');
-            outgoingMsg.val(data.msg);
+            outgoingMsg.text(data.msg);
         } else {
             $('#chat-list').append(incomingMessage(data.username, data.msg));
         }

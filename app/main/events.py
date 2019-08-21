@@ -1,6 +1,7 @@
 from flask import session, current_app
 from flask_socketio import emit, join_room, leave_room
 from .. import socketio, db
+from app.main.models import User, load_user
 import os
 import json
 
@@ -13,7 +14,12 @@ def join(message):
     """
     room = session.get('room')
     join_room(room)
-    emit('status', {'msg': session.get('name') + ' has joined the chat!'}, room=room)
+    current_users = User.query.all()
+    users = []
+    for i in range(0, len(current_users)):
+        users.append(current_users[i].username)
+
+    emit('status', {'msg': session.get('name') + ' has joined the chat!', 'users': users}, room=room)
 
 
 @socketio.on('chat', namespace='/chat')
@@ -55,4 +61,6 @@ def leave(message):
     """
     room = session.get('room')
     leave_room(room)
+    db.session.remove(User(username=session.get('name')))
+    db.session.commit()
     emit('status', {'msg': session.get('name') + ' has left the room.'}, room=room)

@@ -18,11 +18,11 @@ def init_app(debug=False):
         'sqlite:///' + os.path.join(basedir, 'users.db')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-
+    from .main import models
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
     socketio.init_app(app)
-    db = SQLAlchemy(app)
-    migrate = Migrate(app, db)
+    db.init_app(app)
+    migrate.init_app(app, db)
     return app

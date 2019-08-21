@@ -4,6 +4,7 @@ Flask-SocketIO
 Flask-WTF
 flask_sqlalchemy
 flask_migrate
+flask_login
 greenlet
 itsdangerous
 Jinja2
