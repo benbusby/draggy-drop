@@ -6,10 +6,7 @@ from .forms import LoginForm
 @main.route('/', methods=['GET', 'POST'])
 def index():
     """
-    Presents a "login" form to enter a room.
-    TODO: Need to decide if there should be a specified
-    set of rooms, just one room, or a user configurable
-    room field.
+    Presents a "login" form to enter the thunderdome.
     """
     form = LoginForm()
     if form.validate_on_submit():

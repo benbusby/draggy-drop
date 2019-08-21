@@ -2,6 +2,8 @@ eventlet
 Flask
 Flask-SocketIO
 Flask-WTF
+flask_sqlalchemy
+flask_migrate
 greenlet
 itsdangerous
 Jinja2

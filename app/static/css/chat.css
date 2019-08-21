@@ -1,3 +1,15 @@
+.chat-header {
+    text-align: center;
+}
+
+.chat-creation {
+    margin-top: 20px;
+}
+
+.sending {
+    opacity: 0.25;
+}
+
 #draggable {
     width: 100px;
     height: 100px;

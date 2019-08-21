@@ -12,10 +12,10 @@ const incomingMessage = (sender, message) => {
     `
 }
 
-const outgoingMessage = (message) => {
+const outgoingMessage = (message, id) => {
     return `
     <li class="chat-message">
-        <span class="message outgoing">${message}</span>
+        <span id="${id}" class="message outgoing sending">${message}</span>
     </li>
     `
 }
@@ -32,15 +32,6 @@ const newUserMessage = (message) => {
 // to their respective categories in the
 // words json file
 const rawMessage = [];
-function mapToObj(inputMap) {
-    let obj = {};
-
-    inputMap.forEach(function(value, key) {
-        obj[key] = value
-    });
-
-    return obj;
-}
 
 // ----------------------
 // User chat interaction
@@ -50,15 +41,18 @@ const sendChat = () => {
 
     if (message.length == 0) {
         alert("Hi there! Looks like you just tried sending an " +
-        "empty message.\n\nHere at DraggyDrop, we like to do " +
-        "things a little differently. Instead of sending an " +
-        "empty message, why don't you try dragging words into " +
-        "the box and sending some of that!");
+            "empty message.\n\nHere at DraggyDrop, we like to do " +
+            "things a little differently. Instead of sending an " +
+            "empty message, why don't you try dragging words into " +
+            "the box and sending some of that!");
         return;
     }
 
+    let currentChat = $("#chat-input").val();
+    let uuid = getUUID();
     $('#chat-input').val('');
-    socket.emit('chat', { raw_msg: JSON.stringify(rawMessage) });
+    $('#chat-list').append(outgoingMessage(currentChat, uuid));
+    socket.emit('chat', { raw_msg: JSON.stringify(rawMessage), id: uuid });
 }
 
 // Scroll animation for incoming messages
@@ -77,7 +71,9 @@ $(document).ready(function(){
     });
     socket.on('message', function(data) {
         if (data.username == currentUsername) {
-            $('#chat-list').append(outgoingMessage(data.msg));
+            let outgoingMsg = $('#' + data.id);
+            outgoingMsg.removeClass('sending');
+            outgoingMsg.val(data.msg);
         } else {
             $('#chat-list').append(incomingMessage(data.username, data.msg));
         }
@@ -104,3 +100,13 @@ const userTyping = (event) => {
         "and start dragging words over to this input box.");
 }
 
+const getUUID = () => {
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    }
+
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+        s4() + '-' + s4() + s4() + s4();
+}

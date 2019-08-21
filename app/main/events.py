@@ -1,6 +1,6 @@
 from flask import session, current_app
 from flask_socketio import emit, join_room, leave_room
-from .. import socketio
+from .. import socketio, db
 import os
 import json
 
@@ -44,7 +44,7 @@ def chat(message):
                 else:
                     chat_msg += value + ' '
 
-        emit('message', {'username': session.get('name'), 'msg': chat_msg}, room=room)
+        emit('message', {'username': session.get('name'), 'msg': chat_msg, 'id': message['id']}, room=room)
 
 
 @socketio.on('leave', namespace='/chat')
