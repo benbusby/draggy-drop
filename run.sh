@@ -9,6 +9,8 @@ token = b64encode(random_bytes).decode('utf-8')
 print(token)
 EOF`
 
+export FLASK_APP=chat.py
+
 export SECRET_KEY=`python -c "$SECRET_STR"`
 
 rm -rf app/users.db migrations/

@@ -1,14 +1,21 @@
 .login-box {
-    width: 400px;
+    width: 500px;
     padding: 15px;
     margin: 10% auto;
     text-align: center;
     background: white;
 	box-shadow: 0 0.25rem 2rem rgba(38,50,56, 0.1);
     border-radius: 25px;
-    border: 5px solid #ddd;
+    border: 5px solid #cfcfff;
 }
 
-.app-header {
+.login-error {
+    color: red;
+    padding-top: 5px;
+}
+
+.login-header {
+    border-bottom: 4px dotted #cfcfff;
+    padding-bottom: 15px;
     margin-top: 0px;
 }

@@ -69,8 +69,13 @@ def leave(message):
     leave_room(room)
 
     # Remove the user from the db to free up the username
-    db.session.delete(leaving_user)
-    db.session.commit()
+    if leaving_user is not None:
+        db.session.delete(leaving_user)
+        db.session.commit()
+
+    # Clear session values
+    session['name'] = ''
+    session['room'] = ''
 
     # Downlink new online user list
     current_users = User.query.all()

@@ -1,17 +1,33 @@
 <html>
     <head>
+        <script type="text/javascript" src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
         <link href="/static/css/main.css" rel="stylesheet" type="text/css" />
         <link href="/static/css/login.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/chat.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="/static/js/dragdrop.js" charset="utf-8"></script>
+        <script type="text/javascript" src="/static/js/login.js" charset="utf-8"></script>
         <title>Draggy Drop</title>
     </head>
     <body>
         <div class="login-box">
-            <h1 class="app-header">Draggy Drop</h1>
-            <form method="POST">
+            <h1 class="app-header login-header">Draggy Drop</h1>
+            <form id="login-form" method="POST">
                 {{ form.hidden_tag() }}
-                {{ form.name.label }}:<br/> {{ form.name() }} {% for error in form.name.errors %}{{ error }}{% endfor %}<br/><br/>
-                {{ form.submit() }}
+                {{ form.name.label }}:<br/>
+                {{ form.name(id="form-input", onkeydown="userTyping(event)") }}<br/>
+                {% for error in form.name.errors %}
+                    <span class="login-error">{{ error }}</span>
+                {% endfor %}<br/><br/>
+                <button id="actions" type="submit" disabled>Place an ACTION here!</button>
             </form>
+			<div class="chat-creation">
+				<select id="category-selector">
+				</select>
+				<div id="category-section">
+				</div>
+			</div>
         </div>
     </body>
 </html>

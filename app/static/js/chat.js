@@ -1,4 +1,5 @@
 var socket;
+let noSpace = false;
 
 // ----------------------
 // Chat message templates
@@ -45,10 +46,6 @@ const updateOnlineUsers = (users) => {
     setDraggable();
 }
 
-// Key value mapping of chat words
-// to their respective categories in the
-// words json file
-const rawMessage = [];
 
 // ----------------------
 // User chat interaction
@@ -77,7 +74,10 @@ const scrollChat = () => {
     $("#chat-div").animate({ scrollTop: $('#chat-div').prop("scrollHeight")}, 1000);
 }
 
-$(document).ready(function(){
+$(document).ready(function() {
+    // Load the draggable words for the chat
+    loadWords('/static/words.json');
+
     socket = io.connect('http://' + document.domain + ':' + location.port + '/chat');
     socket.on('connect', function() {
         socket.emit('join', {});
@@ -110,14 +110,6 @@ const leaveRoom = () => {
     });
 }
 
-const userTyping = (event) => {
-    event.preventDefault();
-    alert("Woah there! Looks like you might be new here.\n\n" +
-        "Here at DraggyDrop, we like to do things a little differently. " +
-        "To send messages, you'll need to use our intuitive drag and drop " +
-        "messaging interface. Just select a category using the dropdown menu, " +
-        "and start dragging words over to this input box.");
-}
 
 const getUUID = () => {
     function s4() {

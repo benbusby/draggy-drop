@@ -1,10 +1,13 @@
 body {
     font-family: sans-serif;
-    background: #ddd;
+    background: #efefff;
     background-image: linear-gradient( 45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%), linear-gradient( 45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%);
     background-size: 120px 120px;
     background-position: 0 0, 30px 30px;
     animation: slide-rev 4s infinite linear;
+
+    width: 1200px;
+    margin: auto;
 }
 
 @keyframes slide-rev {
@@ -22,4 +25,12 @@ input {
 
 button {
     border-radius: 10px;
+}
+
+.app-header {
+    color: #fff;
+    font-size: 5em;
+    font-weight: bold;
+    font-family: Helvetica;
+    text-shadow: 1px 1px #cfcfff, 4px 4px #afafff, -3px -3px #9f9fff;
 }

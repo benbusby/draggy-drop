@@ -60,6 +60,10 @@
         "get",
         "make",
         "want",
+        "wish",
+        "can",
+        "type",
+        "could",
         "drag",
         "drop",
         "drag-and-drop",
@@ -223,7 +227,8 @@
         "ly",
         "es",
         "ish",
-        "ed"
+        "ed",
+        "d"
     ],
     "punctuation": [
         ".",
@@ -237,6 +242,7 @@
         "an"
     ],
     "prepositions": [
+        "like",
         "for",
         "above",
         "from",
