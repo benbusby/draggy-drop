@@ -10,10 +10,8 @@ def index():
     """
     Presents a "login" form to enter the thunderdome.
     """
-    print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     form = LoginForm()
     if form.validate_on_submit():
-        print('FORM VALIDATED')
         form_name = form.name.data
 
         # Modify the requested username if already taken
@@ -32,10 +30,6 @@ def index():
         session['room'] = 'dnd-room'
 
         return redirect(url_for('.chat'))
-    else:
-        print('FORM NOT VALIDATED')
-        print(form.errors)
-
 
     return render_template('index.html', form=form)
 

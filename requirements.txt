@@ -12,4 +12,5 @@ MarkupSafe
 python-engineio
 python-socketio
 Werkzeug
+wheel
 WTForms
