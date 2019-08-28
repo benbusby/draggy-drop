@@ -13,7 +13,7 @@ export FLASK_APP=chat.py
 
 export SECRET_KEY=`python -c "$SECRET_STR"`
 
-rm -rf app/users.db migrations/
+rm -rf app/chat.db migrations/
 flask db init
 flask db migrate
 flask db upgrade

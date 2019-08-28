@@ -1,7 +1,7 @@
 from flask import session, current_app
 from flask_socketio import emit, join_room, leave_room
 from .. import socketio, db
-from app.main.models import User, load_user
+from app.main.models import User, load_user, Message, new_message
 import os
 import json
 
@@ -42,7 +42,7 @@ def chat(message):
                 if 'user' not in key and value not in words_data[key]:
                     emit('status', {'msg': session.get('name') + ' broke the rules'}, room=room)
                     return
-                elif 'user' in key and load_user(value) is None:
+                elif 'user' in key and load_user(value) is None and 'everyone' not in value:
                     emit('status', {'msg': session.get('name') + ' tried addressing a user, but they left!'}, room=room)
                     return
 
@@ -54,6 +54,8 @@ def chat(message):
                     chat_msg += value + ' '
 
         emit('message', {'username': session.get('name'), 'msg': chat_msg, 'id': message['id']}, room=room)
+
+        new_message(session.get('name'), chat_msg)
 
 
 @socketio.on('leave', namespace='/chat')

@@ -1,8 +1,8 @@
-from flask import session, redirect, url_for, render_template, request, abort
+from flask import session, redirect, url_for, render_template, request, abort, jsonify
 from . import main
 from .forms import LoginForm
 from .. import db
-from app.main.models import User, load_user
+from app.main.models import User, load_user, Message
 
 
 @main.route('/', methods=['GET', 'POST'])
@@ -45,3 +45,16 @@ def chat():
     if name == '' or room == '' or load_user(name) is None:
         return redirect(url_for('.index'))
     return render_template('chat.html', name=name, room=room)
+
+
+@main.route('/history')
+def history():
+    """
+    Fetches the chat history.
+    """
+    msg_arr = []
+    messages = Message.query.all()
+    for i in range(0, len(messages)):
+        msg_arr.append({ 'msg': messages[i].message, 'username': messages[i].username})
+
+    return jsonify(msg_arr)

@@ -43,6 +43,8 @@ const updateOnlineUsers = (users) => {
         onlineUsers.html(onlineUsers.html() + newOnlineUser(users[i]));
     }
 
+    onlineUsers.html(onlineUsers.html() + newOnlineUser("everyone"));
+
     setDraggable();
 }
 
@@ -74,9 +76,22 @@ const scrollChat = () => {
     $("#chat-div").animate({ scrollTop: $('#chat-div').prop("scrollHeight")}, 1000);
 }
 
+
+// Load history from the backend messages db
+const loadHistory = () => {
+    $.get('/history', function(messages) {
+        for (var i in messages) {
+            $("#chat-list").append(incomingMessage(messages[i].username, messages[i].msg));
+        }
+
+        scrollChat();
+    });
+}
+
 $(document).ready(function() {
     // Load the draggable words for the chat
     loadWords('/static/words.json');
+    loadHistory();
 
     socket = io.connect('http://' + document.domain + ':' + location.port + '/chat');
     socket.on('connect', function() {

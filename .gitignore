@@ -1,5 +1,6 @@
 migrations/
-app/users.db
+app/chat.db
+*.db
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

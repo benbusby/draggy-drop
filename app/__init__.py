@@ -15,7 +15,7 @@ def init_app(debug=False):
     app.debug = debug
     app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'users.db')
+        'sqlite:///' + os.path.join(basedir, 'chat.db')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     from .main import models
