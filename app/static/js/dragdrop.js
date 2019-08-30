@@ -18,6 +18,7 @@ const loadWords = (file) => {
 	$.getJSON(file, function(words) {
 		let firstVisible = false;
 		for (let key in words) {
+			let lineBreakNum = (key == "questions") ? 4 : 8;
 			let categoryTitle = key.charAt(0).toUpperCase() + key.slice(1);
 			wordCategories.push(key);
 
@@ -42,7 +43,7 @@ const loadWords = (file) => {
 				);
 
 				numWords++;
-				if (numWords >= 8) {
+				if (numWords >= lineBreakNum) {
 					$("#" + key + "-words").append("<br/><br/>");
 					numWords = 0;
 				}

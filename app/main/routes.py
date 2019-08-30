@@ -1,4 +1,4 @@
-from flask import session, redirect, url_for, render_template, request, abort, jsonify
+from flask import session, redirect, url_for, render_template, request, abort, jsonify 
 from . import main
 from .forms import LoginForm
 from .. import db

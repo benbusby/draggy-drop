@@ -65,6 +65,7 @@ def leave(message):
     A status message is broadcast to all people in the room.
     """
     leaving_user = User.query.filter_by(username=session.get('name')).first()
+    leaving_username = session.get('name')
 
     # Remove the user from the chat room
     room = session.get('room')
@@ -84,4 +85,4 @@ def leave(message):
     users = []
     for i in range(0, len(current_users)):
         users.append(current_users[i].username)
-    emit('status', {'msg': session.get('name') + ' has left the chat.', 'users': users}, room=room)
+    emit('status', {'msg': leaving_username + ' has left the chat.', 'users': users}, room=room)
