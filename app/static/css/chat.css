@@ -171,3 +171,13 @@ input.highlight {
 #category-selector {
     margin-bottom: 2em;
 }
+
+@media (max-height: 800px) {
+    .chatbox {
+        height: 25rem;
+    }
+
+    #chat-div {
+        height: 25rem;
+    }
+}

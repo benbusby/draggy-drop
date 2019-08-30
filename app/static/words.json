@@ -147,6 +147,7 @@
         "nobody"
     ],
     "exclamation": [
+        "oh",
         "please",
         "wow",
         "zowie",
@@ -282,6 +283,7 @@
         "an"
     ],
     "prepositions": [
+        "to",
         "like",
         "for",
         "above",
@@ -307,7 +309,6 @@
         "on",
         "out",
         "through",
-        "to",
         "under",
         "up",
         "with"
@@ -370,6 +371,7 @@
     "th-": [
         "the",
 	"these",
+	"this",
         "them",
         "those",
         "there",
