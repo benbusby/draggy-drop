@@ -53,9 +53,8 @@ def chat(message):
                 else:
                     chat_msg += value + ' '
 
-        emit('message', {'username': session.get('name'), 'msg': chat_msg, 'id': message['id']}, room=room)
-
-        new_message(session.get('name'), chat_msg)
+        if new_message(session.get('name'), chat_msg):
+            emit('message', {'username': session.get('name'), 'msg': chat_msg, 'id': message['id']}, room=room)
 
 
 @socketio.on('leave', namespace='/chat')

@@ -8,12 +8,17 @@ def load_user(username):
 
 
 def new_message(username, message):
+    msg_check = Message.query.filter_by(username=username, message=message)
+    if msg_check.count() > 5:
+        return False
+
     db.session.add(Message(username=username, message=message))
     row_count = Message.query.count()
     if row_count > 100:
         oldest_msg = Message.query.order_by(Message.timestamp.asc()).first()
         db.session.delete(oldest_msg)
     db.session.commit()
+    return True
 
 
 class User(UserMixin, db.Model):
