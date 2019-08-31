@@ -3,8 +3,10 @@ A drag-and-drop chat app -- /r/ProgrammerHumor hackathon submission for most ove
 
 [Try it out live, here!](https://ben.world/draggy-drop/)
 
+[Submission post](https://www.reddit.com/r/ProgrammerHumor/comments/cxqmcp/draggydrop_a_draganddrop_chat_app_with_live_demo/)
+
 ## Installation
-### Prerequisites
+### Depedencies
 - Python 3
 
 ### Setup
